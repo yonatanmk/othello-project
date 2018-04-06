@@ -1,4 +1,7 @@
-
+.container {
+	margin: auto;
+	width: 600px;
+}
 .board {
 	width: 480px;
 	margin: auto;
@@ -41,4 +44,28 @@
 .chip.white {
 	background-color: #E3E4E6;
 	border: 1px solid #222222;
+}
+
+.no-move-message {
+	background-color: #555555;
+	margin-top: 30px;
+	padding: 10px;
+	border: 2px solid black;
+	border-radius: 3px;
+}
+
+.pass-turn-message {
+	display: inline-block;
+	padding-top: 5px;
+}
+
+.pass-turn-button {
+	background-color: yellow;
+	margin-left: 20px;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.pass-turn-button:hover {
+	background-color: red;
 }

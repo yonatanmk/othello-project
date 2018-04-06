@@ -25,16 +25,19 @@ const actions = {
         return;
       }
 
-      dispatch(setBoard(newBoard));
-      dispatch(incrementTurn());
+      dispatch(setBoardAction(newBoard));
+      dispatch(incrementTurnAction());
     };
   },
+  incrementTurn() {
+    return incrementTurnAction();
+  }
 }
 
 export default actions;
 
-const incrementTurn = () => ({ type: INCREMENT_TURN });
-const setBoard = board => ({ type: SET_BOARD, payload: board });
+const incrementTurnAction = () => ({ type: INCREMENT_TURN });
+const setBoardAction = board => ({ type: SET_BOARD, payload: board });
 
 // Directions
 // +1 = ->
