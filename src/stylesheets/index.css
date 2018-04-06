@@ -1,0 +1,36 @@
+
+.board {
+	width: 480px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+.board-row {
+	display: flex;
+}
+
+.tile {
+	flex: 1;
+	background: #25AA6E;
+	border: 1px solid #222222;
+	height: 60px;
+	margin-right: -1px;
+	margin-top: -1px;
+}
+
+.chip {
+	width: 80%;
+	height: 80%;
+	margin-left: 10%;
+	margin-top: 10%;
+	border-radius: 50%;
+}
+
+.chip.black {
+	background: #222222;
+}
+
+.chip.white {
+	background: #E3E4E6;
+	border: 1px solid #222222;
+}
