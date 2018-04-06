@@ -13,6 +13,7 @@ export const willFlip = (startIndex, direction, board, player) => {
 }
 
 export const flipAllTiles = (startIndex, currentIndex, directions, board, player) => {
+  console.log('Current Index: ', currentIndex)
   const newBoard = [...board];
   const direction = directions[0];
   const nextTileIndex = currentIndex + direction;
@@ -21,7 +22,7 @@ export const flipAllTiles = (startIndex, currentIndex, directions, board, player
     return board;
   } else if (nextTile === player) {
     newBoard[currentIndex] = player;
-    return flipAllTiles(startIndex, nextTileIndex, directions.splice(1, directions.length - 1), newBoard, player);
+    return flipAllTiles(startIndex, startIndex, directions.splice(1, directions.length - 1), newBoard, player);
   } else {
     newBoard[currentIndex] = player;
     return flipAllTiles(startIndex, nextTileIndex, directions, newBoard, player);
@@ -33,3 +34,7 @@ export const flipAllTiles = (startIndex, currentIndex, directions, board, player
 // -1 = <-
 // +8 = down
 // -8 = up
+// -9 = nw
+// -7 = ne
+// +9 = sw
+// +7 = se

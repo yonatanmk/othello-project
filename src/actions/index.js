@@ -15,30 +15,43 @@ const actions = {
       }
       const possibleFlipDirections = [];
       if (board[tileIndex + 1] === opponent) {
-        possibleFlipDirections.push(1)
+        possibleFlipDirections.push(1);
       }
       if (board[tileIndex - 1] === opponent) {
-        possibleFlipDirections.push(-1)
+        possibleFlipDirections.push(-1);
       }
       if (board[tileIndex + 8] === opponent) {
-        possibleFlipDirections.push(8)
+        possibleFlipDirections.push(8);
       }
       if (board[tileIndex - 8] === opponent) {
-        possibleFlipDirections.push(-8)
+        possibleFlipDirections.push(-8);
       }
+      if (board[tileIndex - 9] === opponent) {
+        possibleFlipDirections.push(-9);
+      }
+      if (board[tileIndex - 7] === opponent) {
+        possibleFlipDirections.push(-7);
+      }
+      if (board[tileIndex + 9] === opponent) {
+        possibleFlipDirections.push(9);
+      }
+      if (board[tileIndex + 7] === opponent) {
+        possibleFlipDirections.push(7);
+      }
+
+      console.log(possibleFlipDirections)
 
       const trueFlipDirections = possibleFlipDirections.filter(direction => {
         return willFlip(tileIndex, direction, board, player)
       })
+
+      console.log(trueFlipDirections)
 
       const newBoard = flipAllTiles(tileIndex, tileIndex, trueFlipDirections, board, player);
 
       if (trueFlipDirections.length === 0) {
         return;
       }
-      // const newBoard = [...board];
-      //
-      // newBoard[tileIndex] = player ;
 
       dispatch(setBoard(newBoard));
       dispatch(incrementTurn());
@@ -56,3 +69,7 @@ const setBoard = board => ({ type: SET_BOARD, payload: board });
 // -1 = <-
 // +8 = down
 // -8 = up
+// -9 = nw
+// -7 = ne
+// +9 = sw
+// +7 = se
