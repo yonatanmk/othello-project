@@ -1,9 +1,9 @@
-import { SET_TURN } from '../actions';
+import { INCREMENT_TURN } from '../actions';
 
 export default function (state = 1, action) {
   switch (action.type) {
-    case SET_TURN:
-      return action.payload || state;
+    case INCREMENT_TURN:
+      return state + 1;
     default:
       return state;
   }

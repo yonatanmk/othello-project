@@ -1,21 +1,23 @@
-export const SET_TURN = 'SET_TURN';
+import { PLAYER_X, PLAYER_O } from '../lib/players';
+
+export const INCREMENT_TURN = 'INCREMENT_TURN';
 export const SET_BOARD = 'SET_BOARD';
 
 const actions = {
-  setTurn(turn) {
-    return dispatch => {
-      dispatch({ type: SET_TURN, payload: turn });
-    }
-  },
-  playChip(tileIndex, player) {
+  playChip(tileIndex) {
     return (dispatch, getState) => {
-      const { board } = getState();
+      const { board, turn } = getState();
       const newBoard = [...board];
-      newBoard[tileIndex] = player;
 
-      dispatch({ type: SET_BOARD, payload: newBoard });
+      newBoard[tileIndex] = turn % 2 === 1 ? PLAYER_X : PLAYER_O ;
+
+      dispatch(setBoard(newBoard));
+      dispatch(incrementTurn());
     };
-  }
+  },
 }
 
 export default actions;
+
+const incrementTurn = () => ({ type: INCREMENT_TURN });
+const setBoard = board => ({ type: SET_BOARD, payload: board });

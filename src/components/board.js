@@ -9,7 +9,7 @@ class Board extends React.Component {
 	generateTile(key) {
     const { board, playChip } = this.props;
 		return (
-			<Tile key={key} player={board[key]} onClick={() => playChip(key, 'x')} />
+			<Tile key={key} player={board[key]} onClick={() => playChip(key)} />
 		);
 	}
 
