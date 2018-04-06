@@ -1,7 +1,7 @@
 import { PLAYER_1, PLAYER_2 } from './player-utils';
 
 export const getBoardIndexFromCoords = (x, y) => {
-  return (x - 1) + 8 * (y - 1)
+  return (x - 1) + 8 * (y - 1);
 };
 
 export const getStartingBoard = () => {
