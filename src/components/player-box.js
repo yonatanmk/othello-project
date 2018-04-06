@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { PLAYER_X, PLAYER_O, getPlayerFromTurn } from '../lib/player-utils'
+import { PLAYER_1, PLAYER_2, getPlayerFromTurn } from '../lib/player-utils'
 
 class PlayerBox extends React.Component {
   get score() {
@@ -12,7 +12,7 @@ class PlayerBox extends React.Component {
   render() {
     const { player, turn } = this.props;
     const boxClass = `player-box ${getPlayerFromTurn(turn) === player ? "green" : ""}`
-    const chipClass = player === PLAYER_X ? 'example-chip black' : player === PLAYER_O ? 'example-chip white' : '';
+    const chipClass = player === PLAYER_1 ? 'example-chip black' : player === PLAYER_2 ? 'example-chip white' : '';
 
     return (
       <div className={boxClass}>
