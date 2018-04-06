@@ -7,6 +7,7 @@ import '../stylesheets/index.css';
 import actions from '../actions';
 import { getPlayerFromTurn, getOpponentFromTurn } from '../lib/player-utils';
 import { willFlip, getPossibleFlipDirections } from '../lib/game-utils';
+import Header from './header'
 import Board from './board'
 
 class App extends Component {
@@ -42,8 +43,9 @@ class App extends Component {
   render() {
     return (
       <div className="container">
+        <Header turn={this.props.turn}/>
         <Board possibleMoves={this.possibleMoves} />
-        {this.noMoves && <div className="no-move-message">
+        {this.noMoves && <div className="message-box">
           <div className="pass-turn-message">
             <h1>Looks Like You Have No Moves</h1>
           </div>
