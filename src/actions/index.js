@@ -7,6 +7,9 @@ const actions = {
   playChip(tileIndex) {
     return (dispatch, getState) => {
       const { board, turn } = getState();
+      if (board[tileIndex]) {
+        return;
+      }
       const newBoard = [...board];
 
       newBoard[tileIndex] = turn % 2 === 1 ? PLAYER_X : PLAYER_O ;
