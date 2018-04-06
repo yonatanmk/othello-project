@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ isAvailable, player, onClick }) => {
+export default ({ player, onClick }) => {
   const chipClass = player === 'x' ? 'chip white' : player === 'o' ? 'chip black' : '';
 
 	return (

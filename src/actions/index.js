@@ -1,10 +1,21 @@
 export const SET_TURN = 'SET_TURN';
 export const SET_BOARD = 'SET_BOARD';
 
-export const setTurn = turn => dispatch => {
-  dispatch({ type: SET_TURN, payload: turn })
-};
+const actions = {
+  setTurn(turn) {
+    return dispatch => {
+      dispatch({ type: SET_TURN, payload: turn });
+    }
+  },
+  playChip(tileIndex, player) {
+    return (dispatch, getState) => {
+      const { board } = getState();
+      const newBoard = [...board];
+      newBoard[tileIndex] = player;
 
-export const setBoard = board => dispatch => {
-  dispatch({ type: SET_BOARD, payload: board })
-};
+      dispatch({ type: SET_BOARD, payload: newBoard });
+    };
+  }
+}
+
+export default actions;

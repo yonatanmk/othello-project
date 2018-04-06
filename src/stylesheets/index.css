@@ -18,6 +18,10 @@
 	margin-top: -1px;
 }
 
+.tile:hover { 
+    background-color: yellow;
+}
+
 .chip {
 	width: 80%;
 	height: 80%;

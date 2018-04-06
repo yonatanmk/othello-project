@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import Tile from './tile.js';
+import Tile from './tile';
+import actions from '../actions';
 
 class Board extends React.Component {
 	generateTile(key) {
-    const { board } = this.props;
+    const { board, playChip } = this.props;
 		return (
-			<Tile key={key} player={board[key]} onClick={() => console.log('click')} />
+			<Tile key={key} player={board[key]} onClick={() => playChip(key, 'x')} />
 		);
 	}
 
@@ -30,4 +32,8 @@ const mapStateToProps = ({ board }) => {
   return { board };
 };
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = function(dispatch) {
+  return bindActionCreators(actions, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

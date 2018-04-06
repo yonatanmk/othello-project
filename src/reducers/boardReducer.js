@@ -11,6 +11,8 @@ emptyBoard[getBoardIndexFromCoords(5,4)] = 'o';
 export default function (state = emptyBoard, action) {
   switch (action.type) {
     case SET_BOARD:
+      console.log('PAYLOAD')
+      console.log(action.payload)
       return action.payload || state;
     default:
       return state;
