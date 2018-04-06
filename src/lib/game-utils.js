@@ -10,6 +10,7 @@ export const getPossibleFlipDirections = (startIndex, board, opponent) => {
 }
 
 export const willFlip = (startIndex, direction, board, player) => {
+  // console.log('Current Will Flip Index: ', startIndex)
   const nextTileIndex = startIndex + direction;
   const nextTile = board[nextTileIndex];
   if (!nextTile) {
@@ -24,7 +25,7 @@ export const willFlip = (startIndex, direction, board, player) => {
 }
 
 export const flipAllTiles = (startIndex, currentIndex, directions, board, player) => {
-  console.log('Current Index: ', currentIndex)
+  // console.log('Current Index: ', currentIndex)
   const newBoard = [...board];
   const direction = directions[0];
   const nextTileIndex = currentIndex + direction;

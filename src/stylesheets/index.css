@@ -11,15 +11,19 @@
 
 .tile {
 	flex: 1;
-	background: #25AA6E;
+	background-color: #25AA6E;
 	border: 1px solid #222222;
 	height: 60px;
 	margin-right: -1px;
 	margin-top: -1px;
 }
 
-.tile:hover { 
-    background-color: yellow;
+.is-valid {
+	background-color: #58A4B0;
+}
+
+.tile.is-valid:hover {
+    background-color: cyan;
 }
 
 .chip {
@@ -31,10 +35,10 @@
 }
 
 .chip.black {
-	background: #222222;
+	background-color: #222222;
 }
 
 .chip.white {
-	background: #E3E4E6;
+	background-color: #E3E4E6;
 	border: 1px solid #222222;
 }
