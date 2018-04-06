@@ -4,21 +4,19 @@ import { bindActionCreators } from 'redux';
 
 import Tile from './tile';
 import actions from '../actions';
+import { getBoardIndexFromCoords } from '../lib/board-utils';
 
 class Board extends React.Component {
-	generateTile(key) {
-    const { board, playChip } = this.props;
-		return (
-			<Tile key={key} player={board[key]} onClick={() => playChip(key)} />
-		);
-	}
-
 	render() {
+		const { board, playChip } = this.props;
 		const rows = [];
-		for (let y = 0; y < 8; y++) {
+		for (let y = 1; y <= 8; y++) {
 			const columns = [];
-			for (let x = 0; x < 8; x++) {
-				columns.push(this.generateTile(x + 8 * y))
+			for (let x = 1; x <= 8; x++) {
+				const key = getBoardIndexFromCoords(x, y);
+				columns.push(
+					<Tile key={key} player={board[key]} onClick={() => playChip(key)} />
+				);
 			}
 			rows.push(<div className="board-row" key={y}>{columns}</div>);
 		}
