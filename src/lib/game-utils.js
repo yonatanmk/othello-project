@@ -1,3 +1,14 @@
+export const getPossibleFlipDirections = (startIndex, board, opponent) => {
+  const possibleFlipDirections = [];
+  const directions = [1, -1, 7, -7, 8, -8, 9, -9];
+  directions.forEach(direction => {
+    if (board[startIndex + direction] === opponent) {
+      possibleFlipDirections.push(direction);
+    }
+  })
+  return possibleFlipDirections;
+}
+
 export const willFlip = (startIndex, direction, board, player) => {
   const nextTileIndex = startIndex + direction;
   const nextTile = board[nextTileIndex];

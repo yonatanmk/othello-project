@@ -1,4 +1,4 @@
-import { PLAYER_X, PLAYER_O } from './players';
+import { PLAYER_X, PLAYER_O } from './player-utils';
 
 export const getBoardIndexFromCoords = (x, y) => {
   return (x - 1) + 8 * (y - 1)
