@@ -5,13 +5,13 @@ import { bindActionCreators } from 'redux';
 import '../stylesheets/index.css';
 
 import actions from '../actions';
-import { getPlayerFromTurn, getOpponentFromTurn } from '../lib/player-utils';
+import { PLAYER_1, PLAYER_2, getPlayerFromTurn, getOpponentFromTurn } from '../lib/player-utils';
 import { willFlip, getPossibleFlipDirections } from '../lib/game-utils';
 import Header from './header'
 import Board from './board'
+import MessageBox from './common/message-box'
 
 class App extends Component {
-
   get possibleMoves() {
     const { board, turn } = this.props;
     const player = getPlayerFromTurn(turn);
@@ -40,17 +40,41 @@ class App extends Component {
     this.props.incrementTurn();
   }
 
+  get gameOver() {
+    return this.props.board
+      .filter(cell => !cell)
+      .length === 0
+  }
+
+  get gameOverMessage() {
+    let player1 = 0;
+    let player2 = 0;
+    this.props.board.forEach(cell => {
+      if (cell === PLAYER_1) {player1++}
+      if (cell === PLAYER_2) {player2++}
+    })
+
+    return player1 > player2 ? "Player 1 Wins!" :
+      player1 < player2 ? "Player 2 Wins!" : "It's a Tie!";
+  }
+
   render() {
     return (
       <div className="container">
         <Header turn={this.props.turn}/>
         <Board possibleMoves={this.possibleMoves} />
-        {this.noMoves && <div className="message-box">
-          <div className="pass-turn-message">
-            <h1>Looks Like You Have No Moves</h1>
-          </div>
-          <a className="pass-turn-button" onClick={() => this.passTurn()}>Pass Turn</a>
-        </div>}
+        {this.noMoves && !this.gameOver &&
+          <MessageBox
+            message="Looks Like You Have No Moves"
+            buttonText="Pass Turn"
+            onClick={() => this.props.incrementTurn()}
+          />}
+        {this.gameOver &&
+          <MessageBox
+            message={this.gameOverMessage}
+            buttonText="New Game"
+            onClick={() => this.props.newGame()}
+          />}
       </div>
     );
   }

@@ -3,6 +3,7 @@ import { willFlip, flipAllTiles, getPossibleFlipDirections } from '../lib/game-u
 
 export const INCREMENT_TURN = 'INCREMENT_TURN';
 export const SET_BOARD = 'SET_BOARD';
+export const NEW_GAME = 'NEW_GAME';
 
 const actions = {
   playChip(tileIndex) {
@@ -31,6 +32,9 @@ const actions = {
   },
   incrementTurn() {
     return incrementTurnAction();
+  },
+  newGame() {
+    return newGameAction();
   }
 }
 
@@ -38,6 +42,7 @@ export default actions;
 
 const incrementTurnAction = () => ({ type: INCREMENT_TURN });
 const setBoardAction = board => ({ type: SET_BOARD, payload: board });
+const newGameAction = board => ({ type: NEW_GAME, payload: board });
 
 // Directions
 // +1 = ->

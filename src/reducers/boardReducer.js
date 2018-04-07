@@ -1,4 +1,4 @@
-import { SET_BOARD } from '../actions';
+import { SET_BOARD, NEW_GAME } from '../actions';
 
 import { getStartingBoard } from '../lib/board-utils';
 
@@ -8,6 +8,8 @@ export default function (state = startingBoard, action) {
   switch (action.type) {
     case SET_BOARD:
       return action.payload || state;
+    case NEW_GAME:
+      return startingBoard;
     default:
       return state;
   }

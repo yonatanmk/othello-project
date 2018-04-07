@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import App from './components/App';
+import App from './components/app';
 import reducers from './reducers';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk, logger));

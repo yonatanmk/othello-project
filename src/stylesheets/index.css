@@ -95,18 +95,20 @@
 	border: 1px solid #222222;
 }
 
-.pass-turn-message {
+.message {
 	display: inline-block;
-	padding-top: 5px;
+	margin-left: 10px;
 }
 
-.pass-turn-button {
+.message-button {
 	background-color: yellow;
-	margin-left: 20px;
 	border: 1px solid black;
 	padding: 10px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 10px;
 }
 
-.pass-turn-button:hover {
+.message-button:hover {
 	background-color: red;
 }

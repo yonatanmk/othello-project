@@ -1,9 +1,13 @@
-import { INCREMENT_TURN } from '../actions';
+import { INCREMENT_TURN, NEW_GAME } from '../actions';
 
-export default function (state = 1, action) {
+const initalTurn = 1;
+
+export default function (state = initalTurn, action) {
   switch (action.type) {
     case INCREMENT_TURN:
       return state + 1;
+    case NEW_GAME:
+      return initalTurn;
     default:
       return state;
   }
