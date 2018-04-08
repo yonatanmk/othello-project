@@ -2,6 +2,7 @@
 
 A simple Othello game written in React.js/Redux
 
-Run with `npm run start`
+To set up application, run `npm install`
+Run application with `npm run start`
 
 ![MarkdownExplorer](screenshot.png)
