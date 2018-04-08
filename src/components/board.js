@@ -7,7 +7,7 @@ import actions from '../actions';
 import { getBoardIndexFromCoords } from '../lib/board-utils';
 
 class Board extends React.Component {
-	render() {
+	generateBoard() {
 		const { board, playChip, possibleMoves } = this.props;
 		const rows = [];
 		for (let y = 1; y <= 8; y++) {
@@ -20,13 +20,17 @@ class Board extends React.Component {
 						player={board[key]}
 						isValid={possibleMoves.includes(key)}
 						onClick={() => playChip(key)}
-					/>
+					/>,
 				);
 			}
 			rows.push(<div className="board-row" key={y}>{columns}</div>);
 		}
+		return rows;
+	}
+
+	render() {
 		return (
-      <div className="board">{rows}</div>
+      <div className="board">{this.generateBoard()}</div>
     );
 	}
 }
@@ -35,8 +39,6 @@ const mapStateToProps = ({ board }) => {
   return { board };
 };
 
-const mapDispatchToProps = function(dispatch) {
-  return bindActionCreators(actions, dispatch);
-};
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

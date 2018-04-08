@@ -7,31 +7,11 @@ import '../stylesheets/index.css';
 import actions from '../actions';
 import { PLAYER_1, PLAYER_2, getPlayerFromTurn, getOpponentFromTurn } from '../lib/player-utils';
 import { willFlip, getPossibleFlipDirections } from '../lib/game-utils';
-import Header from './header'
-import Board from './board'
-import MessageBox from './common/message-box'
+import Header from './header';
+import Board from './board';
+import MessageBox from './common/message-box';
 
 class App extends Component {
-  possibleMoves(turn) {
-    const { board } = this.props;
-    const player = getPlayerFromTurn(turn);
-    const opponent = getOpponentFromTurn(turn);
-    const possibleMoves = board
-      .map((_,i) => i)
-      .filter(index => {
-        if (board[index]) {
-          return false;
-        }
-        const possibleFlipDirections = getPossibleFlipDirections(index, board, opponent);
-        const trueFlipDirections = possibleFlipDirections.filter(direction => {
-          return willFlip(index, direction, board, player)
-        })
-        return trueFlipDirections.length !== 0;
-      })
-
-    return possibleMoves;
-  }
-
   get noMoves() {
     const { turn } = this.props;
     return this.possibleMoves(turn).length === 0;
@@ -42,16 +22,12 @@ class App extends Component {
     return this.possibleMoves(turn + 1).length === 0;
   }
 
-  passTurn() {
-    this.props.incrementTurn();
-  }
-
   get gameOver() {
     const fullBoard = this.props.board
       .filter(cell => !cell)
-      .length === 0
+      .length === 0;
 
-    const noPossibleMoves = this.noMoves && this.noOpponentMoves
+    const noPossibleMoves = this.noMoves && this.noOpponentMoves;
 
     return fullBoard || noPossibleMoves;
   }
@@ -60,19 +36,43 @@ class App extends Component {
     let player1 = 0;
     let player2 = 0;
     this.props.board.forEach(cell => {
-      if (cell === PLAYER_1) {player1++}
-      if (cell === PLAYER_2) {player2++}
-    })
+      if (cell === PLAYER_1) { player1++; }
+      if (cell === PLAYER_2) { player2++; }
+    });
 
-    return player1 > player2 ? "Player 1 Wins!" :
-      player1 < player2 ? "Player 2 Wins!" : "It's a Tie!";
+    return player1 > player2 ? 'Player 1 Wins!' :
+      player1 < player2 ? 'Player 2 Wins!' : 'It\'s a Tie!';
+  }
+
+  passTurn() {
+    this.props.incrementTurn();
+  }
+
+  possibleMoves(turn) {
+    const { board } = this.props;
+    const player = getPlayerFromTurn(turn);
+    const opponent = getOpponentFromTurn(turn);
+    const possibleMoves = board
+      .map((_, i) => i)
+      .filter(index => {
+        if (board[index]) {
+          return false;
+        }
+        const possibleFlipDirections = getPossibleFlipDirections(index, board, opponent);
+        const trueFlipDirections = possibleFlipDirections.filter(direction => {
+          return willFlip(index, direction, board, player);
+        });
+        return trueFlipDirections.length !== 0;
+      });
+
+    return possibleMoves;
   }
 
   render() {
     const { turn } = this.props;
     return (
       <div className="container">
-        <Header turn={this.props.turn}/>
+        <Header turn={this.props.turn} />
         <Board possibleMoves={this.possibleMoves(turn)} />
         {this.noMoves && !this.gameOver &&
           <MessageBox
@@ -95,8 +95,6 @@ const mapStateToProps = ({ board, turn }) => {
   return { board, turn };
 };
 
-const mapDispatchToProps = function(dispatch) {
-  return bindActionCreators(actions, dispatch);
-};
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

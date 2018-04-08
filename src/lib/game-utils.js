@@ -5,9 +5,9 @@ export const getPossibleFlipDirections = (startIndex, board, opponent) => {
     if (board[startIndex + direction] === opponent) {
       possibleFlipDirections.push(direction);
     }
-  })
+  });
   return possibleFlipDirections;
-}
+};
 
 export const willFlip = (startIndex, direction, board, player) => {
   const rightDirections = [1, -7, 9];
@@ -25,15 +25,11 @@ export const willFlip = (startIndex, direction, board, player) => {
 
   if (leftDirections.includes(direction) && nextTileIndex % 8 === 7) {
     return false;
-  }
-
-  else if (nextTile === player) {
+  } else if (nextTile === player) {
     return true;
   }
-  else {
-    return willFlip(nextTileIndex, direction, board, player)
-  }
-}
+  return willFlip(nextTileIndex, direction, board, player);
+};
 
 export const flipTiles = (startIndex, currentIndex, directions, board, player) => {
   const newBoard = [...board];
@@ -47,12 +43,11 @@ export const flipTiles = (startIndex, currentIndex, directions, board, player) =
     // the next tile is yours, flip currentTile then start over with new direction
     newBoard[currentIndex] = player;
     return flipTiles(startIndex, startIndex, directions.splice(1, directions.length - 1), newBoard, player);
-  } else {
-    // the next tile is the opponents, keep flipping
-    newBoard[currentIndex] = player;
-    return flipTiles(startIndex, nextTileIndex, directions, newBoard, player);
   }
-}
+  // the next tile is the opponents, keep flipping
+  newBoard[currentIndex] = player;
+  return flipTiles(startIndex, nextTileIndex, directions, newBoard, player);
+};
 
 // Directions
 // +1 = ->

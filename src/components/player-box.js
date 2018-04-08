@@ -1,23 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { PLAYER_1, PLAYER_2, getPlayerFromTurn } from '../lib/player-utils'
+import { PLAYER_1, PLAYER_2, getPlayerFromTurn } from '../lib/player-utils';
 
 class PlayerBox extends React.Component {
   get score() {
     const { player, board } = this.props;
-    return board.filter(cell => cell === player).length
+    return board.filter(cell => cell === player).length;
   }
 
   render() {
     const { player, turn } = this.props;
-    const boxClass = `player-box ${getPlayerFromTurn(turn) === player ? "green" : ""}`
+    const boxClass = `player-box ${getPlayerFromTurn(turn) === player ? 'green' : ''}`;
     const chipClass = player === PLAYER_1 ? 'example-chip black' : player === PLAYER_2 ? 'example-chip white' : '';
 
     return (
       <div className={boxClass}>
         <h3 className="player-name">Player {player}</h3>
-        <div className={chipClass}></div>
+        <div className={chipClass} />
         <p className="score">Score: {this.score}</p>
       </div>
     );

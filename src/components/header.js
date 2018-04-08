@@ -3,7 +3,7 @@ import React from 'react';
 import { PLAYER_1, PLAYER_2 } from '../lib/player-utils';
 import PlayerBox from './player-box';
 
-export default ({turn}) => {
+export default () => {
 	return (
 		<div className="message-box">
       <h1 className="title">Othello</h1>
@@ -17,4 +17,4 @@ export default ({turn}) => {
       </div>
 		</div>
 	);
-}
+};

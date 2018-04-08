@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({message, buttonText, onClick}) => {
+export default ({ message, buttonText, onClick }) => {
 	return (
     <div className="message-box">
       <div className="message">
@@ -9,4 +9,4 @@ export default ({message, buttonText, onClick}) => {
       <a className="message-button" onClick={() => onClick()}>{buttonText}</a>
     </div>
 	);
-}
+};

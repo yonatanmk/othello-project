@@ -17,8 +17,8 @@ const actions = {
       const possibleFlipDirections = getPossibleFlipDirections(tileIndex, board, opponent);
 
       const trueFlipDirections = possibleFlipDirections.filter(direction => {
-        return willFlip(tileIndex, direction, board, player)
-      })
+        return willFlip(tileIndex, direction, board, player);
+      });
 
       if (trueFlipDirections.length === 0) {
         return;
@@ -35,8 +35,8 @@ const actions = {
   },
   newGame() {
     return newGameAction();
-  }
-}
+  },
+};
 
 export default actions;
 
