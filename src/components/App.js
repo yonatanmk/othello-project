@@ -12,8 +12,8 @@ import Board from './board'
 import MessageBox from './common/message-box'
 
 class App extends Component {
-  get possibleMoves() {
-    const { board, turn } = this.props;
+  possibleMoves(turn) {
+    const { board } = this.props;
     const player = getPlayerFromTurn(turn);
     const opponent = getOpponentFromTurn(turn);
     const possibleMoves = board
@@ -33,7 +33,13 @@ class App extends Component {
   }
 
   get noMoves() {
-    return this.possibleMoves.length === 0;
+    const { turn } = this.props;
+    return this.possibleMoves(turn).length === 0;
+  }
+
+  get noOpponentMoves() {
+    const { turn } = this.props;
+    return this.possibleMoves(turn + 1).length === 0;
   }
 
   passTurn() {
@@ -41,9 +47,13 @@ class App extends Component {
   }
 
   get gameOver() {
-    return this.props.board
+    const fullBoard = this.props.board
       .filter(cell => !cell)
       .length === 0
+
+    const noPossibleMoves = this.noMoves && this.noOpponentMoves
+
+    return fullBoard || noPossibleMoves;
   }
 
   get gameOverMessage() {
@@ -59,10 +69,11 @@ class App extends Component {
   }
 
   render() {
+    const { turn } = this.props;
     return (
       <div className="container">
         <Header turn={this.props.turn}/>
-        <Board possibleMoves={this.possibleMoves} />
+        <Board possibleMoves={this.possibleMoves(turn)} />
         {this.noMoves && !this.gameOver &&
           <MessageBox
             message="Looks Like You Have No Moves"

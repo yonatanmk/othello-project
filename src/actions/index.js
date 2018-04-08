@@ -1,5 +1,5 @@
 import { getPlayerFromTurn, getOpponentFromTurn } from '../lib/player-utils';
-import { willFlip, flipAllTiles, getPossibleFlipDirections } from '../lib/game-utils';
+import { willFlip, flipTiles, getPossibleFlipDirections } from '../lib/game-utils';
 
 export const INCREMENT_TURN = 'INCREMENT_TURN';
 export const SET_BOARD = 'SET_BOARD';
@@ -24,7 +24,7 @@ const actions = {
         return;
       }
 
-      const newBoard = flipAllTiles(tileIndex, tileIndex, trueFlipDirections, board, player);
+      const newBoard = flipTiles(tileIndex, tileIndex, trueFlipDirections, board, player);
 
       dispatch(setBoardAction(newBoard));
       dispatch(incrementTurnAction());
