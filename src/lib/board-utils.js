@@ -10,5 +10,6 @@ export const getStartingBoard = () => {
   startingBoard[getBoardIndexFromCoords(5,5)] = PLAYER_1;
   startingBoard[getBoardIndexFromCoords(4,5)] = PLAYER_2;
   startingBoard[getBoardIndexFromCoords(5,4)] = PLAYER_2;
+
   return startingBoard;
 }

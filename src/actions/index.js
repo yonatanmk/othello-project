@@ -20,11 +20,11 @@ const actions = {
         return willFlip(tileIndex, direction, board, player)
       })
 
-      const newBoard = flipAllTiles(tileIndex, tileIndex, trueFlipDirections, board, player);
-
       if (trueFlipDirections.length === 0) {
         return;
       }
+
+      const newBoard = flipAllTiles(tileIndex, tileIndex, trueFlipDirections, board, player);
 
       dispatch(setBoardAction(newBoard));
       dispatch(incrementTurnAction());
@@ -51,5 +51,5 @@ const newGameAction = board => ({ type: NEW_GAME, payload: board });
 // -8 = up
 // -9 = nw
 // -7 = ne
-// +9 = sw
-// +7 = se
+// +9 = se
+// +7 = sw
